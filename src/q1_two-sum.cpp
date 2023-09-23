@@ -8,17 +8,13 @@ using std::vector;
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int> &nums, int target)
-    {
+    vector<int> twoSum(vector<int> &nums, int target){
         int n = nums.size();
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++){
             // since target = nums[i] + nums_wanted
             int num_wanted = target - nums[i];
-            for (int j = i + 1; j < n; j++)
-            {
-                if (nums[j] == num_wanted)
-                {
+            for (int j = i + 1; j < n; j++){
+                if (nums[j] == num_wanted){
                     return {i, j};
                 }
             }
@@ -27,8 +23,7 @@ public:
     }
 };
 
-void run_solution()
-{
+void run_solution(){
     vector<int> vec_1 = {3, 2, 4};
     auto sol = Solution();
 
@@ -37,24 +32,19 @@ void run_solution()
 }
 
 // use hash map, O(n);
-class Solution2
-{
+class Solution2{
 public:
-    vector<int> twoSum(vector<int> &nums, int target)
-    {
+    vector<int> twoSum(vector<int> &nums, int target){
         unordered_map<int, int> numToIndex;
         int n = nums.size();
 
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++){
             numToIndex[nums[i]] = i;
         }
         // Find the complement
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++){
             int complement = target - nums[i];
-            if (numToIndex.count(complement) && numToIndex[complement] != i)
-            {
+            if (numToIndex.count(complement) && numToIndex[complement] != i){
                 return {i, numToIndex[complement]};
             }
         }
@@ -63,8 +53,7 @@ public:
     }
 };
 
-void run_solution2()
-{
+void run_solution2(){
     vector<int> vec_1 = {3, 2, 4};
     auto sol = Solution2();
 
@@ -72,8 +61,7 @@ void run_solution2()
     std::cout << output[0] << " " << output[1] << std::endl;
 }
 
-int main()
-{
+int main(){
     // run_solution();
     run_solution2();
 }
