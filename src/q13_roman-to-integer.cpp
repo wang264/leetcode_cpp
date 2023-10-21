@@ -3,7 +3,7 @@
 
 class Solution {
 public:
-    int romanToInt(string s) {
+    int romanToInt(std::string s) {
 
         int result = 0;
         std::unordered_map<char, int> mymap{
