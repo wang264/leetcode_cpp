@@ -1,16 +1,4 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
-struct ListNode {
-      int val;
-      ListNode *next;
-      ListNode(int x) : val(x), next(nullptr) {}
- };
+#include<listnode.h>
  
 class Solution {
 public:
