@@ -1,52 +1,36 @@
-
-#include "../src/helper/listnode.h"
-#include "iostream"
+#include<listnode.h>
 
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        ListNode less_dummy = ListNode(-1) ;
-        ListNode great_eq_dummy = ListNode(-1);
-        
-        ListNode* curr_ptr = head;
-        while (curr_ptr!= nullptr)
-        {
-            if (curr_ptr->val < x){
-                ListNode* temp = curr_ptr->next;
-                curr_ptr->next = less_dummy.next;
-                less_dummy.next = curr_ptr;
-                curr_ptr = temp;
-            }
-            else{
-                ListNode* temp = curr_ptr->next;
-                curr_ptr->next = great_eq_dummy.next;
-                great_eq_dummy.next = curr_ptr;
-                curr_ptr = temp;
-            }
-        }
-        //find the tail of less listnode;
-        ListNode* less_tail = &less_dummy;
-        while (less_tail->next != nullptr)
-        {
-            less_tail = less_tail->next;
-        }
-        less_tail->next = great_eq_dummy.next;
-        
-        return less_dummy.next;
-    }
 
-    void runtest()
-    {   std::vector<int> vec = {1, 4, 3, 2, 5, 2};
-        ListNode *head = ListNode::buildList(vec);
-        ListNode *result = partition(head, 3);
-        ListNode::print(head);
-        ListNode::print(result);
+        ListNode* dummyLessThan = new ListNode();
+        ListNode* dummyEqualOrGreater = new ListNode();
+
+        ListNode* ptr_1 = dummyLessThan;
+        ListNode* ptr_2 = dummyEqualOrGreater;
+
+        ListNode* curr = head;
+        
+        while (curr) {
+            ListNode* next = curr->next;
+            if (curr->val < x) {
+                ptr_1->next = curr;
+                ptr_1 = ptr_1->next;
+                ptr_1->next = nullptr;
+            } else {
+                ptr_2->next = curr;
+                ptr_2 = ptr_2->next;
+                ptr_2->next = nullptr;
+            }
+            curr = next;
+        }
+
+        //connect the two sublist.
+        ptr_1->next = dummyEqualOrGreater->next;
+        return dummyLessThan->next;
+        
+
+
     }
 };
-
-int main()
-{
-    auto solution = Solution();
-    solution.runtest();
-    return 0;
-}
