@@ -4,6 +4,12 @@
 using std::vector;
 
 class Solution {
+// this solution use bfs.
+// in the bfs_helper() we visit all the neighbors of the boarder cells and change 
+// the 'O' we see to 'E' means that cell can be escape.
+
+// after we check all four boarders, we flip 'O' to 'X' means it get captured. and
+// flip 'E' means 'O' means it get escape the capture.
 public:
     char escape = 'E';
     vector<std::pair<int,int>> directions = {{0,1}, {0,-1}, {-1,0}, {1,0}};
