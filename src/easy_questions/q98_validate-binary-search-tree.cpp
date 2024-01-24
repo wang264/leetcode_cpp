@@ -1,6 +1,7 @@
 
 #include <treenode.h>
 #include <stack>
+#include <limits.h>
 
 class Solution {
 public:
@@ -24,5 +25,23 @@ public:
         }
 
         return true;
+    }
+};
+
+class Solution2 {
+public:
+    bool search(TreeNode* root, int min_val, int max_val) {
+        
+        // (min_val, max_val) store the min and max value for root to be valid. 
+        if (root==nullptr) {
+            return true;
+        }
+        if (root->val <= min_val || root->val >= max_val) {
+            return false;
+        }
+        return search(root->left, min_val, root->val) && search(root->right, root->val, max_val);
+    }
+    bool isValidBST(TreeNode* root) {
+        return search(root, INT_MIN, INT_MAX);
     }
 };
