@@ -6,10 +6,10 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         int n = nums.size();
-        // L[i] = nums[0]*nums[1]....nums[i-1]
+        // L[i] = nums[0]*nums[1]....nums[i-1]   product of first i numbers.
         // L[0] = 1
         vector<int> L = vector<int>(n,1);
-        // R[i] = nums[n-1]*nums[n-2]....nums[i+1]
+        // R[i] = nums[n-1]*nums[n-2]....nums[i+1]   product of first (n-i) numbers from the right  
         // R[n-1] = 1
         vector<int> R = vector<int>(n,1);
 

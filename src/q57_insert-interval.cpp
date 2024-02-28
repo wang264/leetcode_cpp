@@ -4,8 +4,44 @@
 
 using std::vector;
 
-
+// good solution
 class Solution {
+public:
+
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        // [[1,2],[3,5],[6,7],[8,10],[12,16]]
+        // [4,8]
+        vector<vector<int>> rslt;
+
+        int n = intervals.size();
+        int i =0;
+        // case 1: end point of existing intervals smaller than start of new interval, 
+        // no chance for overlap   [1,2]
+        while (i<n && intervals[i][1] < newInterval[0]) {
+            rslt.push_back(intervals[i]);
+            i++;
+        }
+
+        // case 2: merging intervals for overlapping case.
+        // when fall into this case, the current intervals's end >= than new interval starting point.
+        while (i<n && newInterval[1]>=intervals[i][0]) {
+            newInterval[0] = std::min(newInterval[0], intervals[i][0]);
+            newInterval[1] = std::max(newInterval[1], intervals[i][1]);
+            i++;
+        }
+        rslt.push_back(newInterval);
+
+        //case 3: no overlapping after new interval being merged.
+        while (i<n) {
+            rslt.push_back(intervals[i]);
+            i++;
+        }
+        return rslt;
+    }
+};
+
+// offical solution but not that good. 
+class Solution2 {
 public:
 
     // return true if the interval a, b overlap.
