@@ -5,7 +5,7 @@ using std::vector;
 using std::string;
 
 
-class Solution {
+class Solution1 { //horizontal scanning.
 public:
     // LCP = longestCommonPrefix
     // b/c  LCP(S1..Sn) = LCP(LCP(LCP(S1,S2), S3), ...Sn)
@@ -24,6 +24,25 @@ public:
         }
         return prefix;
         
+    }
+};
+
+class Solution2 { //vertical scanning
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        if (strs.size()==0) {return "";}
+        if (strs.size()==1) {return strs[0];}
+
+        for(int i=0; i<strs[0].size(); i++) {
+            char c = strs[0][i];
+            // compare with other strings
+            for (int j=1; j<strs.size(); j++) {
+                if (i==strs[j].size() || strs[j][i]!=c) {
+                    return strs[0].substr(0,i);
+                }
+            }
+        }
+        return strs[0];
     }
 };
 

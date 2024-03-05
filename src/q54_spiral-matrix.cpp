@@ -7,6 +7,35 @@ using std::pair;
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int VISITED=101;
+        vector<vector<int>> directions = {{0,1},{1,0},{0,-1},{-1,0}};
+        int curr_direction=0;
+        vector<int> rslt;
+
+        int x=0;
+        int y=0;
+        for(int k=0; k<matrix.size()*matrix[0].size(); k++) {
+            rslt.push_back(matrix[x][y]);
+            matrix[x][y]=VISITED;
+
+            int x_next = x + directions[curr_direction%4][0];
+            int y_next = y + directions[curr_direction%4][1];
+            if (x_next<0 || x_next>=matrix.size() || y_next<0 || y_next>=matrix[0].size() || matrix[x_next][y_next]==VISITED) {
+                curr_direction++;
+                x_next = x + directions[curr_direction%4][0];
+                y_next = y + directions[curr_direction%4][1];
+            }
+            x = x_next;
+            y = y_next;
+        }
+        return rslt;
+
+    }
+};
+
+class Solution2 {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
         //we mark the visited will a special number 999
         int VISITED = 101;
         int rows = matrix.size();

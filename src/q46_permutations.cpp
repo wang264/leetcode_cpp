@@ -1,3 +1,8 @@
+#include <vector>
+#include <unordered_set>
+
+using std::vector;
+
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
