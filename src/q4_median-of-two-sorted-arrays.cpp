@@ -33,8 +33,9 @@ public:
             // if together there are less than k element smaller than the perpose median,
             // then the true median must larger or equal to the perpose median
             if (countSmallerOrEqual(A, mid) + countSmallerOrEqual(B, mid) < k) {
-                start = mid;
+                start = mid; 
             } else {
+                // for thr equal case, if there are exactly k number smaller or equal, the k th largest could be a smaller number
                 end = mid;
             }
         }
@@ -46,6 +47,10 @@ public:
     }
 
     int countSmallerOrEqual(vector<int>& A, int target) {
+        // we want to find the position such that in that index, 
+        // it is larger than target, and the numbers to its left are
+        // smaller or equal to target. So, that index will be the number of 
+        // elements in the array that smaller or equal to target.
         int left = 0;
         int right = A.size()-1;
         if (target<A[left]) {return 0;}
